@@ -83,7 +83,7 @@
                                         <rect key="frame" x="0.0" y="28" width="343" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kxk-oY-9tG" id="7cC-xe-mxH">
-                                            <rect key="frame" x="0.0" y="0.0" width="343" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="343" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -138,6 +138,9 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="nameTextField:" destination="sq3-SQ-ufM" eventType="editingDidEndOnExit" id="E4t-z6-MfD"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="d21-iq-mSN">
                                 <rect key="frame" x="45" y="242" width="97" height="30"/>
@@ -145,6 +148,9 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="inTime1Editing:" destination="sq3-SQ-ufM" eventType="editingDidBegin" id="i5e-La-cHl"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3xQ-pd-2qo">
                                 <rect key="frame" x="229" y="242" width="97" height="30"/>
@@ -152,6 +158,9 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="outTime1Editing:" destination="sq3-SQ-ufM" eventType="editingDidBegin" id="NhS-lz-1pf"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7Xg-ZZ-BK9">
                                 <rect key="frame" x="45" y="400" width="97" height="30"/>
@@ -159,6 +168,9 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="inTime3Editing:" destination="sq3-SQ-ufM" eventType="editingDidBegin" id="Rto-qC-7GY"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vap-20-MeF">
                                 <rect key="frame" x="229" y="400" width="97" height="30"/>
@@ -166,6 +178,9 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="outTime3Editing:" destination="sq3-SQ-ufM" eventType="editingDidBegin" id="EhZ-t2-qhZ"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rYc-NB-S4b">
                                 <rect key="frame" x="47" y="318" width="97" height="30"/>
@@ -173,6 +188,9 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="inTime2Editing:" destination="sq3-SQ-ufM" eventType="editingDidBegin" id="ImI-dD-Hgi"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aTk-zg-kul">
                                 <rect key="frame" x="231" y="318" width="97" height="30"/>
@@ -180,6 +198,9 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="outTime2Editing:" destination="sq3-SQ-ufM" eventType="editingDidBegin" id="X0F-wc-wql"/>
+                                </connections>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -188,6 +209,7 @@
                         <outlet property="inTime1" destination="d21-iq-mSN" id="1Ns-co-6dD"/>
                         <outlet property="inTime2" destination="rYc-NB-S4b" id="irH-PD-yEX"/>
                         <outlet property="inTime3" destination="7Xg-ZZ-BK9" id="0jD-JF-EhO"/>
+                        <outlet property="nameTextField" destination="q9a-jf-8TO" id="pV0-kM-6Cb"/>
                         <outlet property="outTime1" destination="3xQ-pd-2qo" id="3wJ-hq-HxJ"/>
                         <outlet property="outTime2" destination="aTk-zg-kul" id="tk9-dq-I5X"/>
                         <outlet property="outTime3" destination="vap-20-MeF" id="SiG-Tx-QSG"/>
@@ -241,6 +263,6 @@
         <image name="second" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Pub-eK-cTK"/>
+        <segue reference="R33-8C-iiP"/>
     </inferredMetricsTieBreakers>
 </document>
