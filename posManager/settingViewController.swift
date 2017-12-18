@@ -7,10 +7,12 @@
 //
 
 import UIKit
+import RealmSwift
 
 class settingViewController: UIViewController{
     
     @IBOutlet weak var nameTextField: UITextField!
+    
     
     @IBOutlet weak var inTime1: UITextField!
     @IBOutlet weak var outTime1: UITextField!
@@ -18,6 +20,9 @@ class settingViewController: UIViewController{
     @IBOutlet weak var outTime2: UITextField!
     @IBOutlet weak var inTime3: UITextField!
     @IBOutlet weak var outTime3: UITextField!
+    
+    let realm = try! Realm()
+    var task:Setting!   // 追加する
         
     var toolBarI1:UIToolbar!
     var toolBarI2:UIToolbar!
@@ -33,6 +38,19 @@ class settingViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let tapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(dismissKeyboard))
+        self.view.addGestureRecognizer(tapGesture)
+        
+        nameTextField.text = task.name
+        
+        //時間表示
+        inTime1.text = task.InTime1
+        inTime2.text = task.InTime2
+        inTime3.text = task.InTime3
+        outTime1.text = task.OutTime1
+        outTime2.text = task.OutTime2
+        outTime3.text = task.OutTime3
         
         //datepicker上のtoolbarのdoneボタン
         
@@ -186,15 +204,44 @@ class settingViewController: UIViewController{
    
 
 
+    @IBAction func nameText(_ sender: Any) {
+        nameTextField.endEditing(true)
+    }
 
         // Do any additional setup after loading the view.
     
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+     // Dispose of any resources that can be recreated.
+        
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        try! realm.write {
+            
+            self.task.name = self.nameTextField.text!
+           
+            //とりあえずStringで
+            self.task.InTime1 = self.inTime1.text!
+            self.task.InTime2 = self.inTime2.text!
+            self.task.InTime3 = self.inTime3.text!
+            self.task.OutTime1 = self.outTime1.text!
+            self.task.OutTime2 = self.outTime2.text!
+            self.task.OutTime3 = self.outTime3.text!
+            
+            self.realm.add(self.task, update: true)
+
+           
+        }
+        
+        super.viewWillDisappear(animated)
+    }
+    
+    func dismissKeyboard(){
+        // キーボードを閉じる
+        view.endEditing(true)
+    }
 
     /*
     // MARK: - Navigation
@@ -206,12 +253,9 @@ class settingViewController: UIViewController{
     }
     */
 
-    @IBAction func nameTextField(_ sender: Any) {
-        nameTextField.resignFirstResponder()
+    //@IBAction func nameTextField(_ sender: Any) {
+        //nameTextField.resignFirstResponder()
         
-    }
+    //}
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.view.endEditing(true)
-    }
-}
+   }
