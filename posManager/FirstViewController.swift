@@ -21,6 +21,8 @@ func +(_ left:CGPoint, _ right:CGPoint)->CGPoint{
 
 
 class FirstViewController: UIViewController {
+    
+    
     // タッチ開始時のUIViewのorigin
     var orgOrigin: CGPoint!
     // タッチ開始時の親ビュー上のタッチ位置

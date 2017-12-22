@@ -30,6 +30,13 @@ class settingViewController: UIViewController{
     var toolBarO1:UIToolbar!
     var toolBarO2:UIToolbar!
     var toolBarO3:UIToolbar!
+    
+    let datePickerViewI1:UIDatePicker = UIDatePicker()
+    let datePickerViewI2:UIDatePicker = UIDatePicker()
+    let datePickerViewI3:UIDatePicker = UIDatePicker()
+    let datePickerViewO1:UIDatePicker = UIDatePicker()
+    let datePickerViewO2:UIDatePicker = UIDatePicker()
+    let datePickerViewO3:UIDatePicker = UIDatePicker()
 
     
     
@@ -42,16 +49,33 @@ class settingViewController: UIViewController{
         let tapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(dismissKeyboard))
         self.view.addGestureRecognizer(tapGesture)
         
+        let formatter = DateFormatter()
+        formatter.dateFormat  = "H:mm";
+        
+       
+        
+        let inTime1String:String = formatter.string(from: task.InTime1 as Date)
+        let inTime2String:String = formatter.string(from: task.InTime2 as Date)
+        let inTime3String:String = formatter.string(from: task.InTime3 as Date)
+        let outTime1String:String = formatter.string(from: task.OutTime1 as Date)
+        let outTime2String:String = formatter.string(from: task.OutTime2 as Date)
+        let outTime3String:String = formatter.string(from: task.OutTime3 as Date)
+        
         nameTextField.text = task.name
         
         //時間表示
-        inTime1.text = task.InTime1
-        inTime2.text = task.InTime2
-        inTime3.text = task.InTime3
-        outTime1.text = task.OutTime1
-        outTime2.text = task.OutTime2
-        outTime3.text = task.OutTime3
-        
+        inTime1.text = inTime1String
+        datePickerViewI1.date = task.InTime1 as Date
+        inTime2.text = inTime2String
+        datePickerViewI2.date = task.InTime2 as Date
+        inTime3.text = inTime3String
+        datePickerViewI3.date = task.InTime3 as Date
+        outTime1.text = outTime1String
+        datePickerViewO1.date = task.OutTime1 as Date
+        outTime2.text = outTime2String
+        datePickerViewO2.date = task.OutTime2 as Date
+        outTime3.text = outTime3String
+        datePickerViewO3.date = task.OutTime3 as Date
         //datepicker上のtoolbarのdoneボタン
         
         //inTime1
@@ -102,7 +126,6 @@ class settingViewController: UIViewController{
     //textFieldが選択されたらdatepickerを表示
     @IBAction func inTime1Editing(_ sender: UITextField) {
         var _: Int
-        let datePickerViewI1:UIDatePicker = UIDatePicker()
         datePickerViewI1.datePickerMode = UIDatePickerMode.time
         datePickerViewI1.minuteInterval = 15
         sender.inputView = datePickerViewI1
@@ -119,7 +142,6 @@ class settingViewController: UIViewController{
     //outTime1
     @IBAction func outTime1Editing(_ sender: UITextField) {
         var _: Int
-        let datePickerViewO1:UIDatePicker = UIDatePicker()
         datePickerViewO1.datePickerMode = UIDatePickerMode.time
         datePickerViewO1.minuteInterval = 15
         sender.inputView = datePickerViewO1
@@ -134,7 +156,6 @@ class settingViewController: UIViewController{
     //inTime2
     @IBAction func inTime2Editing(_ sender: UITextField) {
         var _: Int
-        let datePickerViewI2:UIDatePicker = UIDatePicker()
         datePickerViewI2.datePickerMode = UIDatePickerMode.time
         datePickerViewI2.minuteInterval = 15
         sender.inputView = datePickerViewI2
@@ -149,8 +170,7 @@ class settingViewController: UIViewController{
     //outTime2
     @IBAction func outTime2Editing(_ sender: UITextField) {
         var _: Int
-        let datePickerViewO2:UIDatePicker = UIDatePicker()
-        datePickerViewO2.datePickerMode = UIDatePickerMode.time
+       datePickerViewO2.datePickerMode = UIDatePickerMode.time
         datePickerViewO2.minuteInterval = 15
         sender.inputView = datePickerViewO2
         datePickerViewO2.addTarget(self, action: #selector(settingViewController.datePickerO2ValueChanged(_:)), for: UIControlEvents.valueChanged)
@@ -164,7 +184,6 @@ class settingViewController: UIViewController{
     //inTime3
     @IBAction func inTime3Editing(_ sender: UITextField) {
         var _: Int
-        let datePickerViewI3:UIDatePicker = UIDatePicker()
         datePickerViewI3.datePickerMode = UIDatePickerMode.time
         datePickerViewI3.minuteInterval = 15
         sender.inputView = datePickerViewI3
@@ -179,7 +198,6 @@ class settingViewController: UIViewController{
     //outTime3
     @IBAction func outTime3Editing(_ sender: UITextField) {
         var _: Int
-        let datePickerViewO3:UIDatePicker = UIDatePicker()
         datePickerViewO3.datePickerMode = UIDatePickerMode.time
         datePickerViewO3.minuteInterval = 15
         sender.inputView = datePickerViewO3
@@ -220,15 +238,16 @@ class settingViewController: UIViewController{
     override func viewWillDisappear(_ animated: Bool) {
         try! realm.write {
             
+            
             self.task.name = self.nameTextField.text!
            
-            //とりあえずStringで
-            self.task.InTime1 = self.inTime1.text!
-            self.task.InTime2 = self.inTime2.text!
-            self.task.InTime3 = self.inTime3.text!
-            self.task.OutTime1 = self.outTime1.text!
-            self.task.OutTime2 = self.outTime2.text!
-            self.task.OutTime3 = self.outTime3.text!
+           
+            self.task.InTime1 = self.datePickerViewI1.date as NSDate 
+            self.task.InTime2 = self.datePickerViewI2.date as NSDate
+            self.task.InTime3 = self.datePickerViewI3.date as NSDate
+            self.task.OutTime1 = self.datePickerViewO1.date as NSDate
+            self.task.OutTime2 = self.datePickerViewO1.date as NSDate
+            self.task.OutTime3 = self.datePickerViewO1.date as NSDate
             
             self.realm.add(self.task, update: true)
 

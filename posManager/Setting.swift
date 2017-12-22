@@ -15,18 +15,18 @@ class Setting: Object {
     
     dynamic var name = ""
     
-    //とりあえずStringで
-    dynamic var InTime1 = ""
     
-     dynamic var InTime2 = ""
+    dynamic var InTime1 = NSDate()
     
-     dynamic var InTime3 = ""
+     dynamic var InTime2 = NSDate()
     
-     dynamic var OutTime1 = ""
+     dynamic var InTime3 = NSDate()
     
-     dynamic var OutTime2 = ""
+     dynamic var OutTime1 = NSDate()
     
-     dynamic var OutTime3 = ""
+     dynamic var OutTime2 = NSDate()
+    
+     dynamic var OutTime3 = NSDate()
     /**
      id をプライマリーキーとして設定
      */

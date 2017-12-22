@@ -43,17 +43,29 @@ class SecondViewController: UIViewController, UITableViewDelegate,  UITableViewD
         // Cellに値を設定する
         cell.name.text = task.name
         
-        cell.time1.text = "①\(task.InTime1)~\(task.OutTime1)"
-        if task.InTime2 != ""{
+        let formatter = DateFormatter()
+        formatter.dateFormat  = "H:mm";
+        
+        let inTime1String:String = formatter.string(from: task.InTime1 as Date)
+        let inTime2String:String = formatter.string(from: task.InTime2 as Date)
+        let inTime3String:String = formatter.string(from: task.InTime3 as Date)
+        let outTime1String:String = formatter.string(from: task.OutTime1 as Date)
+        let outTime2String:String = formatter.string(from: task.OutTime2 as Date)
+        let outTime3String:String = formatter.string(from: task.OutTime3 as Date)
+
+    
+        
+        cell.time1.text = "①\(inTime1String)~\(outTime1String)"
+        if inTime2String != ""{
         cell.time2.isHidden = false;
-        cell.time2.text = "②\(task.InTime2)~\(task.OutTime2)"
+        cell.time2.text = "②\(inTime2String)~\(outTime2String)"
         }
         else {
             cell.time2.isHidden = true;
         }
-        if task.InTime3 != ""{
+        if inTime3String != ""{
         cell.time3.isHidden = false;
-        cell.time3.text = "③\(task.InTime3)~\(task.OutTime3)"
+        cell.time3.text = "③\(inTime3String)~\(outTime3String)"
         }
         else {
             cell.time3.isHidden = true;
@@ -93,13 +105,7 @@ class SecondViewController: UIViewController, UITableViewDelegate,  UITableViewD
         } else {
             let task = Setting()
             
-            //Stringで
-            //task.InTime1 = NSDate()
-            //task.InTime2 = NSDate()
-            //task.InTime3 = NSDate()
-            //task.OutTime1 = NSDate()
-            //task.OutTime2 = NSDate()
-            //task.OutTime3 = NSDate()
+            
             
             if taskArray.count != 0 {
                 task.id = taskArray.max(ofProperty: "id")! + 1
